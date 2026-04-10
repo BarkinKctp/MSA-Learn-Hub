@@ -1,6 +1,6 @@
 <div align="center">
 
-# Learn-hub-esi
+# Micorsoft LearnHub
 
 A modern, interactive learning platform with curated courses for AI, ML, Web Dev, and more.
 
