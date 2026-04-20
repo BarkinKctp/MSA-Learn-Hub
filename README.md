@@ -10,7 +10,6 @@ A modern, interactive learning platform with curated courses for AI, ML, Web Dev
 [![Vite](https://img.shields.io/badge/Vite-5.1.6-purple.svg)](https://vitejs.dev/)
 
 </div>
-
 ## ✨ Features
 
 - 📚 **Comprehensive Course Catalog** - Browse curated learning paths and courses
