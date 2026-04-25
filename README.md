@@ -29,7 +29,7 @@ A modern, interactive learning platform with curated courses for AI, ML, Web Dev
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (v18 or higher )
-- npm or yarn
+- npm or  yarn
 
 ### Installation
 
