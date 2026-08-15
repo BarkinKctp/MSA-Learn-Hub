@@ -23,38 +23,38 @@ export const RecommendationsPage: React.FC<RecommendationsPageProps> = ({
     },
     {
       id: 2,
-      title: "Build Web Applications",
+      title: "Explore Azure Services",
       description:
-        "Learn modern web development with Azure App Service. Perfect if you want to build and deploy full-stack applications.",
+        "Get hands-on with the Azure services you'll use throughout your learning journey. Explore the Azure portal and become familiar with how services are created, configured, and managed.",
       icon: Target,
       steps: [
-        "Master web development basics",
-        "Learn Azure App Service",
-        "Deploy your first application",
+        "Explore the Azure portal",
+        "Create and configure Azure resources",
+        "Get familiar with the services you'll use",
       ],
     },
     {
       id: 3,
-      title: "Explore Generative AI",
+      title: "Learn & Build with the Community",
       description:
-        "Discover the power of Large Language Models and Azure OpenAI. Build intelligent applications with AI capabilities.",
+        "Expand your knowledge by watching tutorials from experienced Azure content creators. Follow along with real projects and build your own applications to strengthen your skills.",
       icon: Lightbulb,
       steps: [
-        "Understand AI fundamentals",
-        "Learn prompt engineering",
-        "Build with Azure OpenAI",
+        "Watch Azure tutorials and walkthroughs",
+        "Follow along with hands-on projects",
+        "Build your own Azure projects",
       ],
     },
     {
       id: 4,
-      title: "Master Data Engineering",
+      title: "Prepare for Intermediate Certifications",
       description:
-        "Design and implement modern data solutions. Perfect for handling big data and analytics at scale.",
+        "If you're planning to pursue an intermediate Azure certification, prepare with mock exams and make sure you're familiar with the full range of services covered by your chosen certification.",
       icon: Users,
       steps: [
-        "Learn data engineering concepts",
-        "Master ETL patterns",
-        "Implement data lakes on Azure",
+        "Review the certification objectives",
+        "Practice with mock exams",
+        "Become familiar with the covered Azure services",
       ],
     },
   ];

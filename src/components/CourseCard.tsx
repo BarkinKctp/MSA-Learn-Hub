@@ -31,7 +31,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
 
   return (
     <div
-      className={`rounded-xl overflow-hidden transition-all duration-200 group flex flex-col ${
+      className={`rounded-xl overflow-hidden min-w-0 max-w-full transition-all duration-200 group flex flex-col ${
         isMS
           ? "bg-white border border-[#00a4ef]/25 hover:border-[#00a4ef]/60 hover:shadow-[0_4px_20px_rgba(0,164,239,0.18)] hover:-translate-y-0.5"
           : "bg-white border border-slate-200 hover:border-blue-300 hover:shadow-md"
@@ -140,8 +140,8 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         )}
 
         {isExpanded && (
-          <div className="mt-3 space-y-3 animate-in fade-in slide-in-from-top-2">
-            <p className="text-sm text-slate-600 leading-relaxed">
+          <div className="mt-3 min-w-0 max-w-full space-y-3 animate-in fade-in slide-in-from-top-2">
+            <p className="text-sm text-slate-600 leading-relaxed break-words">
               {detailsText}
             </p>
             {course.prerequisites && course.prerequisites.length > 0 && (
@@ -151,7 +151,10 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
                 </p>
                 <ul className="text-sm text-slate-600 space-y-0.5">
                   {course.prerequisites.map((prereq) => (
-                    <li key={prereq} className="flex items-center gap-1.5">
+                    <li
+                      key={prereq}
+                      className="flex items-start gap-1.5 min-w-0 break-words"
+                    >
                       <BookOpen className="w-3 h-3 text-slate-400 flex-shrink-0" />
                       {prereq}
                     </li>
