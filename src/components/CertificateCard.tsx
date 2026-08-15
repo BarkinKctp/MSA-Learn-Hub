@@ -96,7 +96,7 @@ export const CertificateCard: React.FC<CertificateCardProps> = ({
             ⏱️ Duration: {certificate.duration}
           </p>
         )}
-
+        {/*
         <a
           href={certificate.link}
           target="_blank"
@@ -106,6 +106,7 @@ export const CertificateCard: React.FC<CertificateCardProps> = ({
           Start Certification
           <ExternalLink className="w-4 h-4" />
         </a>
+        */}
       </div>
     </div>
   );

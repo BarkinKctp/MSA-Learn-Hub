@@ -224,6 +224,6 @@ export const CERTIFICATES: Certificate[] = [
     level: CourseLevel.Intermediate,
     link: 'https://learn.microsoft.com/training/paths/github-administration-products/?sharingId=455E2BC2C46A8E46&wt.mc_id=studentamb_609039',
     duration: '2-4 weeks',
-    prerequisites: ['GitHub Foundations recommended'],
+    prerequisites: ['GitHub Foundations recommended'],  
   },
 ];

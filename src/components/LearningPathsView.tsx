@@ -24,54 +24,47 @@ const matchesSidebarFilter = (
   }
 
   const haystack =
-    `${path.title} ${path.description} ${path.topics.join(" ")}`.toLowerCase();
+    `${path.title} ${path.description} ${path.topics.join(" ")} ${
+      path.certificates?.join(" ") ?? ""
+    }`.toLowerCase();
+
+  const isAZ900 = /az-900/i.test(haystack);
+  const isAZ400 = /az-400/i.test(haystack);
 
   switch (selectedSidebarId) {
     case "foundations-learning-paths":
-      return /(azure fundamentals|ai fundamentals|security.*fundamentals|power platform fundamentals|azure data fundamentals|github foundations|github fundamentals)/i.test(
-        haystack,
+      return (
+        isAZ900 ||
+        /ai-901|sc-900|pl-900|dp-900|github foundations/i.test(haystack)
       );
+
     case "cybersecurity-learning-paths":
-      if (/az-900/i.test(haystack)) return true;
-      return /security|cybersecurity|identity|entra|zero trust|compliance/i.test(
+      return isAZ900 || /sc-900|sc-300|sc-100/i.test(haystack);
+
+    case "azure-path":
+      return isAZ900 || isAZ400 || /az-104|az-305/i.test(haystack);
+
+    case "ai-path":
+      return isAZ900 || /ai-901|ai-103|ai-200/i.test(haystack);
+
+    case "power-platform-path":
+      return isAZ900 || /pl-900|pl-300/i.test(haystack);
+
+    case "data-path":
+      return isAZ900 || /dp-900|dp-600|dp-300/i.test(haystack);
+
+    case "devops-path":
+      return (
+        isAZ900 ||
+        isAZ400 ||
+        /devops|ci\/cd|automation|pipeline/i.test(haystack)
+      );
+
+    case "github-path":
+      return /github foundations|github actions|github copilot|github administration/i.test(
         haystack,
       );
-    case "azure-path":
-      if (/az-900/i.test(haystack)) return true;
-      return (
-        /az-104|az-305|az-400|azure/i.test(haystack) &&
-        !/power platform|fabric|database|analytics|github/i.test(haystack)
-      );
-    case "ai-path":
-      if (/az-900/i.test(haystack)) return true;
-      return (
-        /ai|generative|machine learning|azure ai|foundry/i.test(haystack) &&
-        !/power platform|fabric|data engineering|github/i.test(haystack)
-      );
-    case "power-platform-path":
-      if (/az-900/i.test(haystack)) return true;
-      return (
-        /power platform|power bi|business solution|dataverse|pl-900|pl-300/i.test(
-          haystack,
-        ) && !/devops|github|azure admin|data engineer|fabric/i.test(haystack)
-      );
-    case "data-path":
-      if (/az-900/i.test(haystack)) return true;
-      return (
-        /(fabric|data fundamentals|database administrator|azure sql|analytics engineer|data engineering|data)/i.test(
-          haystack,
-        ) && !/power platform|gitHub|pl-|devops/i.test(haystack)
-      );
-    case "devops-path":
-      if (/az-400/i.test(haystack)) return true;
-      return (
-        /devops|ci\/cd|github actions|automation|pipeline/i.test(haystack) &&
-        !/power platform|pl-900|pl-300|fabric|data engineering|ai-/i.test(
-          haystack,
-        )
-      );
-    case "github-path":
-      return /github/i.test(haystack);
+
     default:
       return true;
   }
