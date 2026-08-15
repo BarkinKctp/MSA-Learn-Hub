@@ -1,25 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A curated learning hub for cloud, AI, security, and developer skills."
+    />
+    <title>MS Skill Path Hub</title>
+    <link rel="icon" type="image/svg+xml" href="/custom-site-icon.svg" />
+    <style>
+      body {
+        font-family:
+          "Segoe UI",
+          "Segoe UI Web",
+          -apple-system,
+          BlinkMacSystemFont,
+          Roboto,
+          "Helvetica Neue",
+          sans-serif;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A curated directory of top Microsoft Learn courses for Azure, AI, GitHub Copilot, .NET, and more." />
-  <title>Microsoft LearnHub</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', 'Segoe UI Web', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
-</head>
-
-<body class="bg-slate-50 text-slate-900 antialiased">
-  <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
-
+  <body class="bg-slate-50 text-slate-900 antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

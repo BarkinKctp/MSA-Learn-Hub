@@ -1,0 +1,155 @@
+import React from "react";
+import { COURSE_DATA } from "../data/courses";
+import { CategorySection } from "./CategorySection";
+import { ViewTabs, ViewType } from "./ViewTabs";
+import { Layers3 } from "lucide-react";
+
+interface ModulesViewProps {
+  searchQuery: string;
+  scrollToSection: (id: string) => void;
+  activeView: ViewType;
+  onViewChange: (view: ViewType) => void;
+  selectedSidebarId: string;
+}
+
+const matchesSidebarFilter = (value: string, selectedSidebarId: string) => {
+  if (
+    !selectedSidebarId ||
+    selectedSidebarId.endsWith("all-modules") ||
+    selectedSidebarId === "all"
+  ) {
+    return true;
+  }
+
+  const haystack = value.toLowerCase();
+
+  switch (selectedSidebarId) {
+    case "foundations-modules":
+      return /(az-900|ai-901|sc-900|pl-900|dp-900|github foundations|gitHub fundamentals|fundamentals)/i.test(
+        haystack,
+      );
+    case "cybersecurity-modules":
+      if (/az-900/i.test(haystack)) return true;
+      return /security|cybersecurity|identity|zero trust|compliance|entra/i.test(
+        haystack,
+      );
+    case "azure-modules":
+      return (
+        /azure/i.test(haystack) &&
+        !/power platform|pl-900|pl-300|fabric|dp-|ai-|security|identity|zero trust|github|az-900|az-104|az-305|az-400/i.test(
+          haystack,
+        )
+      );
+    case "ai-modules":
+      if (/az-900/i.test(haystack)) return true;
+      return (
+        /ai|machine learning|generative ai|azure ai|foundry|copilot/i.test(
+          haystack,
+        ) &&
+        !/power platform|fabric|dp-|pl-|az-400|azure administrator|azure solutions|devops/i.test(
+          haystack,
+        )
+      );
+    case "power-platform-modules":
+      if (/az-900/i.test(haystack)) return true;
+      return (
+        /power platform|power bi|power automate|power apps|dataverse|pl-900|pl-300/i.test(
+          haystack,
+        ) && !/fabric|dp-|az-400|devops|github/i.test(haystack)
+      );
+    case "data-modules":
+      if (/az-900/i.test(haystack)) return true;
+      return (
+        /dp-900|dp-600|dp-300|fabric|database|data engineering|data analyst|sql/i.test(
+          haystack,
+        ) && !/power platform|pl-|github|az-400|devops/i.test(haystack)
+      );
+    case "devops-modules":
+      if (/az-400/i.test(haystack)) return true;
+      return (
+        /devops|github actions|ci\/cd|automation|pipeline/i.test(haystack) &&
+        !/power platform|pl-900|pl-300|fabric|dp-|ai-|security|identity|zero trust/i.test(
+          haystack,
+        )
+      );
+    case "github-modules":
+      return /github/i.test(haystack);
+    default:
+      return true;
+  }
+};
+
+export const ModulesView: React.FC<ModulesViewProps> = ({
+  searchQuery,
+  scrollToSection,
+  activeView,
+  onViewChange,
+  selectedSidebarId,
+}) => {
+  const filteredData = COURSE_DATA.map((category) => ({
+    ...category,
+    courses: category.courses.filter(
+      (course) =>
+        matchesSidebarFilter(
+          `${course.title} ${course.details ?? ""} ${course.topics.join(" ")}`,
+          selectedSidebarId,
+        ) &&
+        (course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          course.topics.some((t) =>
+            t.toLowerCase().includes(searchQuery.toLowerCase()),
+          )),
+    ),
+  })).filter((category) => category.courses.length > 0);
+
+  return (
+    <div>
+      {!searchQuery && (
+        <div className="mb-10 rounded-2xl bg-gradient-to-br from-violet-900 via-violet-800 to-indigo-900 overflow-hidden relative">
+          <div
+            className="absolute inset-0 opacity-[0.07]"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(255,255,255,1) 28px,rgba(255,255,255,1) 29px),repeating-linear-gradient(90deg,transparent,transparent 28px,rgba(255,255,255,1) 28px,rgba(255,255,255,1) 29px)",
+            }}
+          />
+          <div className="relative z-10 px-6 py-10 sm:px-10 sm:py-12">
+            <div className="flex items-center gap-3 mb-3">
+              <Layers3 className="w-8 h-8 text-violet-300" />
+              <span className="text-sm font-semibold text-violet-300 uppercase tracking-wider">
+                Practical Modules
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight mb-3">
+              Learn by Building Skills
+            </h2>
+            <p className="text-violet-100 text-base leading-relaxed max-w-2xl">
+              Explore focused, hands-on modules across Azure, AI, security,
+              Power Platform, and GitHub so you can turn learning into real,
+              job-ready capability.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Tabs below banner */}
+      <div className="mb-8">
+        <ViewTabs activeView={activeView} onViewChange={onViewChange} />
+      </div>
+
+      {filteredData.length > 0 ? (
+        filteredData.map((category) => (
+          <CategorySection key={category.id} category={category} />
+        ))
+      ) : (
+        <div className="text-center py-20">
+          <h3 className="text-lg font-medium text-slate-900">
+            No modules found
+          </h3>
+          <p className="mt-1 text-slate-500">
+            Try adjusting your search terms.
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};

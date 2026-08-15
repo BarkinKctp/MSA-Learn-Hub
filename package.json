@@ -1,7 +1,8 @@
 {
-  "name": "learn-hub-esi",
+  "name": "msa-learn-hub",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "A curated Microsoft Learn course directory and certification hub.",
   "type": "module",
   "scripts": {
     "dev": "vite",

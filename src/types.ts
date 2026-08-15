@@ -12,8 +12,8 @@ export interface Course {
   link: string;
   isRecommended?: boolean;
   isMicrosoft?: boolean;
-  details?: string; // Short description for UI
-  prerequisites?: string[]; // List for data structure
+  details?: string;
+  prerequisites?: string[];
 }
 
 export interface Category {
