@@ -90,6 +90,8 @@ export const ModulesView: React.FC<ModulesViewProps> = ({
     ...category,
     courses: category.courses.filter(
       (course) =>
+        // ModulesView should contain actual Microsoft Learn modules only
+        course.link.includes("/training/modules/") &&
         matchesSidebarFilter(
           `${course.title} ${course.details ?? ""} ${course.topics.join(" ")}`,
           selectedSidebarId,

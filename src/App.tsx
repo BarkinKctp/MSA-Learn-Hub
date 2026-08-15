@@ -267,18 +267,19 @@ const App: React.FC = () => {
               window.location.reload();
             }}
           >
-            <div className="flex flex-wrap w-6 h-6 gap-0.5 mr-3">
-              <div className="w-[11px] h-[11px] bg-[#f25022]" />
-              <div className="w-[11px] h-[11px] bg-[#7fba00]" />
-              <div className="w-[11px] h-[11px] bg-[#00a4ef]" />
-              <div className="w-[11px] h-[11px] bg-[#ffb900]" />
+            {/* MSA Logo */}
+            <div className="w-8 h-8 sm:w-9 sm:h-9 mr-2.5 shrink-0">
+              <img
+                src="/msa-logo.svg"
+                alt="MSA Learn Hub"
+                className="w-full h-full object-contain"
+              />
             </div>
-            <h1 className="text-lg sm:text-xl font-black tracking-tight text-slate-900">
-              MS
-              <span className="text-slate-500 font-semibold">
-                {" "}
-                Skill Path Hub
-              </span>
+
+            {/* Brand Name */}
+            <h1 className="text-base sm:text-xl font-black tracking-tight text-slate-900 whitespace-nowrap">
+              MSA
+              <span className="text-slate-500 font-semibold"> Learn Hub</span>
             </h1>
           </div>
 
@@ -329,40 +330,48 @@ const App: React.FC = () => {
         </div>
 
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-white border-b border-slate-200 p-4 animate-in slide-in-from-top-5 max-h-[80vh] overflow-y-auto">
-            <div className="relative mb-3">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-4 w-4 text-slate-400" />
-              </div>
-              <input
-                type="text"
-                placeholder="Search courses..."
-                className="block w-full pl-10 p-2.5 border border-slate-200 rounded-lg bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-            <nav className="space-y-0.5">
-              {COURSE_DATA.map((category) => (
+          <div className="md:hidden bg-white border-b border-slate-200 p-3 animate-in slide-in-from-top-5">
+            <nav className="space-y-1">
+              {SIDEBAR_ITEMS[activeView].map((item) => (
                 <button
-                  key={category.id}
-                  onClick={() => scrollToSection(category.id)}
-                  className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium flex items-center justify-between min-h-[44px] ${
-                    activeSection === category.id
-                      ? "bg-[#0078d4]/10 text-[#005a9e]"
-                      : "text-slate-600 hover:bg-[#0078d4]/8 font-semibold"
+                  key={item.id}
+                  onClick={() => {
+                    setSelectedSidebarId(item.id);
+                    setSearchQuery("");
+                    setActiveSection(item.id);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full text-left px-3 py-3 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center justify-between gap-2 ${
+                    selectedSidebarId === item.id
+                      ? "bg-[#0078d4]/10 text-[#005a9e] ring-1 ring-[#0078d4]/30"
+                      : "text-slate-700 hover:bg-slate-50"
                   }`}
                 >
-                  <span className="truncate pr-2">{category.title}</span>
+                  <span className="truncate">{item.label}</span>
+
+                  <span
+                    className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-full ${item.accent}`}
+                  >
+                    {item.badge}
+                  </span>
                 </button>
               ))}
             </nav>
+
+            <div className="mt-3 pt-3 border-t border-slate-200">
+              <RecommendationsBox
+                onNavigateToRecommendations={() => {
+                  setViewMode("recommendations");
+                  setIsMobileMenuOpen(false);
+                }}
+              />
+            </div>
           </div>
         )}
       </header>
 
       <main
-        className={`flex-grow pt-20 pb-16 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full transition-all duration-300 ${
+        className={`flex-grow pt-20 pb-12 sm:pb-16 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full transition-all duration-300 ${
           viewMode === "recommendations"
             ? "lg:pl-0"
             : sidebarOpen

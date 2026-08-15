@@ -21,8 +21,8 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
   const sortedCourses = sortMicrosoftFirst(category.courses);
 
   return (
-    <section id={category.id} className="mb-10 scroll-mt-20">
-      <div className="mb-5 px-1 py-1">
+    <section id={category.id} className="mb-8 sm:mb-10 scroll-mt-20">
+      <div className="mb-4 sm:mb-5 px-1 py-1">
         <h2
           className="text-xl sm:text-2xl font-bold mb-1 leading-snug text-slate-900"
           style={{
@@ -32,7 +32,9 @@ export const CategorySection: React.FC<CategorySectionProps> = ({
         >
           {category.title}
         </h2>
-        <p className="text-slate-600 text-sm">{category.description}</p>
+        <p className="text-slate-600 text-sm leading-relaxed">
+          {category.description}
+        </p>
       </div>
       <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
         {sortedCourses.map((course) => (
