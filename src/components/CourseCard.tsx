@@ -142,7 +142,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         {isExpanded && (
           <div className="mt-3 min-w-0 max-w-full space-y-3 animate-in fade-in slide-in-from-top-2">
             <p className="text-sm text-slate-600 leading-relaxed break-words">
-              {detailsText}
+              {course.details}
             </p>
             {course.prerequisites && course.prerequisites.length > 0 && (
               <div>
