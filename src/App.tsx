@@ -259,12 +259,10 @@ const App: React.FC = () => {
           <div
             className="flex items-center cursor-pointer shrink-0"
             onClick={() => {
-              setActiveView("modules");
-              setSelectedSidebarId("all-modules");
               setViewMode("main");
               setSidebarOpen(true);
               setIsMobileMenuOpen(false);
-              window.location.reload();
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
             {/* MSA Logo */}

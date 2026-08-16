@@ -1,6 +1,7 @@
 import React from "react";
 import { LearningPath } from "../data/learningPaths";
 import { ExternalLink, Zap, BookOpen } from "lucide-react";
+import ResourceCompletion from "./ResourceCompletion";
 
 interface LearningPathCardProps {
   path: LearningPath;
@@ -22,6 +23,7 @@ export const LearningPathCard: React.FC<LearningPathCardProps> = ({ path }) => {
         >
           {path.level}
         </span>
+        <ResourceCompletion resourceId={path.id} resourceType="learning-path" />
       </div>
 
       <h3 className="font-bold text-slate-900 mb-2 line-clamp-2">

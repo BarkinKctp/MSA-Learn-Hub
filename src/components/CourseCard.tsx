@@ -7,6 +7,7 @@ import {
   BookOpen,
 } from "lucide-react";
 import { Course, CourseLevel } from "../types";
+import ResourceCompletion from "./ResourceCompletion";
 
 const levelColors: Record<CourseLevel, string> = {
   [CourseLevel.Beginner]: "bg-green-100 text-green-700",
@@ -61,6 +62,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
             <span className="ml-auto text-[10px] bg-[#0078d4]/10 text-[#0078d4] font-semibold px-2 py-0.5 rounded-full">
               Official
             </span>
+            <ResourceCompletion resourceId={course.id} resourceType="module" />
           </div>
         )}
 
@@ -164,7 +166,6 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
             )}
           </div>
         )}
-
         {!isMS && (
           <a
             href={course.link}
