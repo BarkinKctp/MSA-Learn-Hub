@@ -274,7 +274,7 @@ export const COURSE_DATA: Category[] = [
 {
   id: 'pl900-governance-administration',
   title: 'Describe Power Platform governance and administration',
-  topics: ['Governance', 'Environments', 'Security', 'Privacy', 'Monitoring', 'ALM'],
+  topics: ['Governance', 'Environments', 'Privacy', 'Monitoring', 'ALM'],
   level: CourseLevel.Beginner,
   link: 'https://learn.microsoft.com/training/modules/describe-microsoft-power-platform-administration-governance/?wt.mc_id=studentamb_609039',
   isRecommended: true,
@@ -642,7 +642,7 @@ export const COURSE_DATA: Category[] = [
 {
   id: 'ai103-agent-tools-services',
   title: 'Choose tools and services for your agent on Microsoft’s Agent Platform',
-  topics: ['AI Agents', 'Agent Tools', 'Microsoft Foundry', 'Microsoft Entra', 'Governance'],
+  topics: ['AI Agents', 'Agent Tools', 'Microsoft Foundry', 'Governance'],
   level: CourseLevel.Beginner,
   link: 'https://learn.microsoft.com/training/modules/build-solutions-microsoft-agent-platform/?wt.mc_id=studentamb_609039',
   isRecommended: true,
@@ -972,7 +972,7 @@ export const COURSE_DATA: Category[] = [
       {
         id: 'ms-prepare-ai-dev',
         title: 'Plan and Prepare to Develop AI Solutions',
-        topics: ['Azure AI Services', 'AI Solution Architecture', 'Resource Planning', 'SDK Setup', 'Security', 'Monitoring'],
+        topics: ['Azure AI Services', 'AI Solution Architecture', 'Resource Planning', 'SDK Setup', 'Monitoring'],
         level: CourseLevel.Beginner,
         link: 'https://learn.microsoft.com/training/modules/prepare-azure-ai-development/?wt.mc_id=studentamb_609039',
         isRecommended: true,

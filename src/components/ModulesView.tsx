@@ -22,58 +22,67 @@ const matchesSidebarFilter = (value: string, selectedSidebarId: string) => {
   }
 
   const haystack = value.toLowerCase();
+  const isAZ900 = /az-900/i.test(haystack);
 
   switch (selectedSidebarId) {
     case "foundations-modules":
-      return /(az-900|ai-901|sc-900|pl-900|dp-900|github foundations|gitHub fundamentals|fundamentals)/i.test(
-        haystack,
+      return (
+        isAZ900 ||
+        /ai-901|sc-900|pl-900|dp-900|github foundations|fundamentals/i.test(
+          haystack,
+        )
       );
+
     case "cybersecurity-modules":
-      if (/az-900/i.test(haystack)) return true;
-      return /security|cybersecurity|identity|zero trust|compliance|entra/i.test(
-        haystack,
+      return (
+        isAZ900 ||
+        /security|cybersecurity|identity|zero trust|compliance|entra/i.test(
+          haystack,
+        )
       );
+
     case "azure-modules":
       return (
-        /azure/i.test(haystack) &&
-        !/power platform|pl-900|pl-300|fabric|dp-|ai-|security|identity|zero trust|github|az-900|az-104|az-305|az-400/i.test(
-          haystack,
-        )
+        isAZ900 ||
+        (/azure/i.test(haystack) &&
+          !/power platform|pl-900|pl-300|fabric|dp-|ai-|security|identity|zero trust|github/i.test(
+            haystack,
+          ))
       );
+
     case "ai-modules":
-      if (/az-900/i.test(haystack)) return true;
       return (
+        isAZ900 ||
         /ai|machine learning|generative ai|azure ai|foundry|copilot/i.test(
           haystack,
-        ) &&
-        !/power platform|fabric|dp-|pl-|az-400|azure administrator|azure solutions|devops/i.test(
-          haystack,
         )
       );
+
     case "power-platform-modules":
-      if (/az-900/i.test(haystack)) return true;
       return (
+        isAZ900 ||
         /power platform|power bi|power automate|power apps|dataverse|pl-900|pl-300/i.test(
           haystack,
-        ) && !/fabric|dp-|az-400|devops|github/i.test(haystack)
+        )
       );
+
     case "data-modules":
-      if (/az-900/i.test(haystack)) return true;
       return (
+        isAZ900 ||
         /dp-900|dp-600|dp-300|fabric|database|data engineering|data analyst|sql/i.test(
-          haystack,
-        ) && !/power platform|pl-|github|az-400|devops/i.test(haystack)
-      );
-    case "devops-modules":
-      if (/az-400/i.test(haystack)) return true;
-      return (
-        /devops|github actions|ci\/cd|automation|pipeline/i.test(haystack) &&
-        !/power platform|pl-900|pl-300|fabric|dp-|ai-|security|identity|zero trust/i.test(
           haystack,
         )
       );
+
+    case "devops-modules":
+      return (
+        isAZ900 ||
+        /devops|github actions|ci\/cd|automation|pipeline/i.test(haystack)
+      );
+
     case "github-modules":
-      return /github/i.test(haystack);
+      return /github/i.test(haystack) && !isAZ900;
+
     default:
       return true;
   }
